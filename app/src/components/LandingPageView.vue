@@ -1,25 +1,24 @@
 <style scoped>
-  img {
-    margin-top: -25px;
-    width: 450px;
-  }
+
 </style>
 
 <template>
   <div>
-    <img src="./LandingPageView/assets/logo.png" alt="electron-vue">
-    <h1>Welcome.</h1>
+    <h1>Reminders</h1>
+    <reminders></reminders>
     <versions></versions>
     <links></links>
   </div>
 </template>
 
 <script>
+  import Reminders from './LandingPageView/Reminders';
   import Links from './LandingPageView/Links';
   import Versions from './LandingPageView/Versions';
 
   export default {
     components: {
+      Reminders,
       Links,
       Versions,
     },

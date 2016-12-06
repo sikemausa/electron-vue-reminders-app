@@ -30,7 +30,10 @@ let config = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        exclude: /node_modules/
+        exclude: /node_modules/,
+        query: {
+          presets: ['es2015']
+        }
       },
       {
         test: /\.json$/,
@@ -86,7 +89,8 @@ let config = {
   vue: {
     loaders: {
       sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax=1',
-      scss: 'vue-style-loader!css-loader!sass-loader'
+      scss: 'vue-style-loader!css-loader!sass-loader',
+      js: 'babel'
     }
   }
 }
