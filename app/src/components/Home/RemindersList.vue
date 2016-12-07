@@ -4,7 +4,7 @@
 <template>
   <ul id="example-1">
     <li v-for="reminder in reminders">
-      {{ reminder }}
+      {{ reminder.title }}
     </li>
   </ul>
 </template>

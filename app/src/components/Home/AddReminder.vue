@@ -4,26 +4,22 @@
 <template>
   <form>
     <input
-      ref="input"
-      v-bind:reminder="activeReminder"
-      v-on:input="updateReminder($event.target.value)"
-      placeholder="Name">
-    <p>Name is: {{ name }}</p>
+      v-model="title"
+      placeholder="Title">
+    <p>Title is: {{ title }}</p>
+    <button v-on:click='createReminder(title, $event)'>Add Reminder</button>
   </form>
 </template>
 
 <script>
   export default {
-    props: ['activeReminder'],
+    props: ['createReminder'],
     data() {
       return {
-        name: '',
+        title: '',
       };
     },
     methods: {
-      // updateReminder: (activeReminder) => {
-      //
-      // },
     },
   };
 </script>

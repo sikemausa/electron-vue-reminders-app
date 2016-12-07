@@ -8,14 +8,13 @@
 <template>
   <div>
     <h1>Reminders</h1>
-    <reminders-list
-        :reminders = 'reminders'
-        :reminder = 'reminder'
-    ></reminders-list>
     <add-reminder
-      :activeReminder = 'activeReminder'
+      :createReminder = 'createReminder'
     ></add-reminder>
     <p> {{ reminder }} </p>
+    <reminders-list
+      :reminders = 'reminders'
+    ></reminders-list>
   </div>
 </template>
 
@@ -31,23 +30,21 @@
     name: 'landing-page',
     data() {
       return {
-        reminder: 'yo',
         reminders: [],
         activeReminder: {
-          name: '',
+          title: '',
           createdAt: null,
         },
       };
     },
     methods: {
-      addReminder: () => {
-        const reminder = () => {
-          return {
-            name: '',
-            createdAt: Date.now(),
-          }
+      createReminder(title, e) {
+        e.preventDefault();
+        const reminder = {
+          title,
+          createdAt: Date.now(),
         };
-        this.reminders.push(activeReminder);
+        this.reminders.push(reminder);
       },
     },
   };
