@@ -20,11 +20,6 @@ if (process.env.NODE_ENV === 'development') {
   config.url = `file://${__dirname}/dist/index.html`
 }
 
-menubar.on('ready', () => {
-  console.log("something");
-});
-
 menubar.on('after-create-window', () => {
-  console.log('yoyoyyo');
   menubar.window.loadURL(config.url);
 });

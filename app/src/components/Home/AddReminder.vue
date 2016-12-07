@@ -6,8 +6,9 @@
     <input
       v-model="title"
       placeholder="Title">
-    <p>Title is: {{ title }}</p>
-    <button v-on:click='createReminder(title, $event)'>Add Reminder</button>
+    <input type="datetime-local"
+      v-model="due">
+    <button v-on:click='createReminder(title, due, $event)'>Add Reminder</button>
   </form>
 </template>
 
@@ -17,6 +18,7 @@
     data() {
       return {
         title: '',
+        due: null,
       };
     },
     methods: {
