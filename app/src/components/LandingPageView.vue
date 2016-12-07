@@ -7,8 +7,6 @@
     <h1>Reminders</h1>
     <reminders
         :reminders = 'reminders'
-        :whatever = 'this.nameOfFuction'
-
     ></reminders>
     <versions></versions>
     <links></links>
@@ -32,10 +30,5 @@
         reminders: ['sfdgsdf1', 'asdgsdag2', 'sadfasdf3'],
       };
     },
-    // methods() {
-    //   nameOfFunction() {
-    //
-    //   },
-    // }
   };
 </script>
