@@ -15,14 +15,10 @@
 
 <script>
   import Reminders from './LandingPageView/Reminders';
-  import Links from './LandingPageView/Links';
-  import Versions from './LandingPageView/Versions';
 
   export default {
     components: {
       Reminders,
-      Links,
-      Versions,
     },
     name: 'landing-page',
     data() {
