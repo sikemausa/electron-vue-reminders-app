@@ -5,7 +5,11 @@
 <template>
   <div>
     <h1>Reminders</h1>
-    <reminders></reminders>
+    <reminders
+        :reminders = 'reminders'
+        :whatever = 'this.nameOfFuction'
+
+    ></reminders>
     <versions></versions>
     <links></links>
   </div>
@@ -23,5 +27,15 @@
       Versions,
     },
     name: 'landing-page',
+    data() {
+      return {
+        reminders: ['sfdgsdf1', 'asdgsdag2', 'sadfasdf3'],
+      };
+    },
+    // methods() {
+    //   nameOfFunction() {
+    //
+    //   },
+    // }
   };
 </script>
