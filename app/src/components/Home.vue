@@ -14,6 +14,7 @@
     <p> {{ reminder }} </p>
     <reminders-list
       :reminders = 'reminders'
+      :deleteReminder = 'deleteReminder'
     ></reminders-list>
   </div>
 </template>
@@ -34,17 +35,26 @@
         activeReminder: {
           title: '',
           createdAt: null,
+          due: null,
         },
       };
     },
     methods: {
-      createReminder(title, e) {
+      createReminder(title, due, e) {
         e.preventDefault();
         const reminder = {
           title,
           createdAt: Date.now(),
+          due,
         };
         this.reminders.push(reminder);
+      },
+      deleteReminder(createdAt) {
+        for (let i = 0; i < this.reminders.length; i++) {
+          if (this.reminders[i].createdAt === createdAt) {
+            this.reminders.splice(i, 1);
+          }
+        }
       },
     },
   };
