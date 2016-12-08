@@ -23,13 +23,13 @@
     margin-top: 7px;
     border-style: hidden;
     background-color: #009688;
-    color: #FFF;
+    color: #FFFFFF;
   }
   .addButton:hover {
     background-color: #00635A;
   }
   .addButton:disabled {
-    color: #999;
+    color: #999999;
   }
   .addButton:hover:disabled {
     background-color: #009688;
@@ -51,10 +51,15 @@
       class="datePicker"
     /></br>
     <button
-      v-bind:disabled="(title === '')"
+      v-bind:disabled="(title === '' && due === null)"
       v-on:click='createReminder(title, due, $event)'
       class="addButton"
     >Add Reminder</button>
+    <!-- <button
+      v-bind:disabled="(title === '' && due === null)"
+      v-on:click='saveReminder(title, due, $event)'
+      class="addButton"
+    >Save Reminder</button> -->
   </form>
 </template>
 

@@ -1,11 +1,11 @@
 <style scoped>
   h1 {
-    height: 35px;
-    width: 400px;
     background-color: #455A64;
-    color: #FFF;
+    color: #FFFFFF;
     font-size: 1.7em;
     font-weight: 700;
+    height: 35px;
+    width: 100vw;
   }
 </style>
 
@@ -26,6 +26,7 @@
 <script>
   import RemindersList from './Home/RemindersList';
   import AddReminder from './Home/AddReminder';
+  // import database from '../database';
 
   export default {
     components: {
@@ -60,6 +61,15 @@
           }
         }
       },
+      // saveReminder(title, due, e) {
+      //   e.preventDefault();
+      //   database('reminders').insert({
+      //     title,
+      //     due
+      //   })
+      // },
+      // editReminder(createdAt) {
+      // },
     },
   };
 </script>

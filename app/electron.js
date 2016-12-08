@@ -4,6 +4,7 @@ const electron = require('electron')
 const path = require('path')
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
+const database = require('./src/database')
 
 const menubar = new MenuBar({
   width: 400,
@@ -24,3 +25,5 @@ if (process.env.NODE_ENV === 'development') {
 menubar.on('after-create-window', () => {
   menubar.window.loadURL(config.url);
 });
+
+global.database = database

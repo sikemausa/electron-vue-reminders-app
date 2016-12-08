@@ -4,10 +4,9 @@
 <template>
   <ul id="example-1">
     <li v-for="reminder in reminders">
-      <div v-on:click='deleteReminder(reminder.createdAt)'>
-        {{ reminder.title }}
-        {{ reminder.due }}
-      </div>
+      <h3 class="reminder-title">{{ reminder.title }}</h3>
+      <span class="due">Due: </span>{{ formatDate(reminder.due) }}
+      <button v-on:click='deleteReminder(reminder.createdAt)'>✖️</button>
     </li>
   </ul>
 </template>
@@ -20,7 +19,7 @@
     methods: {
       formatDate(date) {
         const parsedDate = Date.parse(date);
-        return moment(parsedDate);
+        return moment(parsedDate).format('MM/D/YY, h:mm a');
       },
     },
   };

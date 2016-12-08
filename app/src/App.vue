@@ -10,24 +10,27 @@
   body { height: 100%; }
 
   body {
-    /*align-items: center;*/
     background: #CFD8DC;
     background-position: center;
     display: flex;
     font-family: Lato, Helvetica, sans-serif;
     justify-content: center;
     text-align: center;
+    height: 100%;
   }
 </style>
 
 <template>
   <div>
-    <landing-page></landing-page>
+    <landing-page
+      :database = 'database'
+    ></landing-page>
   </div>
 </template>
 
 <script>
   import LandingPage from './components/Home';
+  import database from './database'
   export default {
     components: {
       LandingPage,
