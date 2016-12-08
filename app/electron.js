@@ -8,6 +8,7 @@ const BrowserWindow = electron.BrowserWindow
 const menubar = new MenuBar({
   width: 400,
   height: 500,
+  alwaysOnTop: true,
 });
 
 let config = {}

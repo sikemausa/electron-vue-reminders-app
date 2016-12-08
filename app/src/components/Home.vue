@@ -1,7 +1,11 @@
 <style scoped>
   h1 {
-    width: 100%;
-    background-color: grey;
+    height: 35px;
+    width: 400px;
+    background-color: #455A64;
+    color: #FFF;
+    font-size: 1.7em;
+    font-weight: 700;
   }
 </style>
 
