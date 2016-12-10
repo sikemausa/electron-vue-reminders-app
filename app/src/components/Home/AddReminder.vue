@@ -8,7 +8,10 @@
       placeholder="Title">
     <input type="datetime-local"
       v-model="due">
-    <button v-on:click='addReminder(title, due, createdAt, $event)'>Add Reminder</button>
+    <button v-on:click='addReminder(title, due, createdAt, $event)'
+            v-bind:disabled="(title === '' || due === null)"
+            >Add Reminder
+    </button>
   </form>
 </template>
 
