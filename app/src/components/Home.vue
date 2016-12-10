@@ -41,22 +41,14 @@
       };
     },
     methods: {
-      createReminder(title, due, e) {
-        e.preventDefault();
-        const reminder = {
-          title,
-          createdAt: Date.now(),
-          due,
-        };
-        this.reminders.push(reminder);
-      },
-      deleteReminder(id) {
-        database('reminders').where('t.id', id).del();
+      deleteReminder(id, e) {
+        database('reminders').where('id', id).del()
+        .then(() => this.fetchReminders(e));
       },
       addReminder(title, due, createdAt, e) {
         e.preventDefault();
         database('reminders').insert({ title, createdAt, due })
-        .then(this.fetchReminders(e));
+        .then(() => this.fetchReminders(e));
       },
       fetchReminders(e) {
         e.preventDefault();
