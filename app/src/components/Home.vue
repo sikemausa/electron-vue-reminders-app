@@ -35,6 +35,7 @@
     name: 'Home',
     created() {
       this.fetchReminders();
+      this.checkReminders();
     },
     data() {
       return {
@@ -60,17 +61,21 @@
             this.reminders.push(reminder);
           });
         })
-        .then(this.addNotifications())
         .catch(error => console.log(error));
       },
-      addNotifications() {
+      checkReminders() {
         database.select().from('reminders').then((reminders) => {
-          reminders.forEach((reminder) => {
-            if(reminder.due <= )
-            const notification = new Notification('title', {
-              body: reminder.title,
-            });
+          if (!reminders) {
+            return setTimeout(() => { this.checkReminders(); }, 60000);
+          }
+          this.reminders.forEach((reminder) => {
+            if (Date.parse(reminder.due) <= Date.now()) {
+              const notification = new Notification('title', {
+                body: reminder.title,
+              });
+            }
           });
+          setTimeout(() => { this.checkReminders(); }, 60000);
         });
       },
     },
