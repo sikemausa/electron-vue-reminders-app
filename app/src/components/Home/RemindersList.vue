@@ -19,7 +19,7 @@
     methods: {
       formatDate(date) {
         const parsedDate = Date.parse(date);
-        return moment(parsedDate).format('MM/D/YY, h:mm:ss a');
+        return moment(parsedDate).format('MM/D/YY, h:mm a');
       },
     },
   };
