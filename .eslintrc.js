@@ -13,6 +13,7 @@ module.exports = {
     'html'
   ],
   'rules': {
+    'no-unused-vars': 0,
     'no-console': 0,
     'no-return-assign': 0,
     'consistent-return': 0,
@@ -20,7 +21,6 @@ module.exports = {
     'import/no-unresolved': 0,
     'no-param-reassign': 0,
     'no-shadow': 0,
-    // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0
   }
 };

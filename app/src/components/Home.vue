@@ -60,7 +60,18 @@
             this.reminders.push(reminder);
           });
         })
+        .then(this.addNotifications())
         .catch(error => console.log(error));
+      },
+      addNotifications() {
+        database.select().from('reminders').then((reminders) => {
+          reminders.forEach((reminder) => {
+            if(reminder.due <= )
+            const notification = new Notification('title', {
+              body: reminder.title,
+            });
+          });
+        });
       },
     },
   };
