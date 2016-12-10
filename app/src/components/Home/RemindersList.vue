@@ -2,7 +2,7 @@
 </style>
 
 <template>
-  <ul id="example-1">
+  <ul id="reminders-list">
     <li v-for="reminder in reminders">
       <h3 class="reminder-title">{{ reminder.title }}</h3>
       <span class="due">Due: </span>{{ formatDate(reminder.due) }}

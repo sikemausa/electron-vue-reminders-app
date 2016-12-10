@@ -9,9 +9,7 @@
   <div>
     <h1>Reminders</h1>
     <add-reminder
-      :createReminder = 'createReminder'
       :addReminder = 'addReminder'
-      :fetchReminders = 'fetchReminders'
     ></add-reminder>
     <p> {{ reminder }} </p>
     <reminders-list
