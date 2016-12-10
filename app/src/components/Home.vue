@@ -34,7 +34,7 @@
       RemindersList,
       AddReminder,
     },
-    name: 'landing-page',
+    name: 'Home',
     created() {
       this.fetchReminders();
     },
