@@ -9,7 +9,7 @@
   <div>
     <h1>Reminders</h1>
     <add-reminder
-      :createReminder = 'createReminder'
+      :addReminder = 'addReminder'
     ></add-reminder>
     <p> {{ reminder }} </p>
     <reminders-list
@@ -22,42 +22,43 @@
 <script>
   import RemindersList from './Home/RemindersList';
   import AddReminder from './Home/AddReminder';
+  import { remote } from 'electron';
+  import path from 'path';
+  const database = remote.require(path.join(process.cwd(), 'app/database.js'));
+  global.database = database;
 
   export default {
     components: {
       RemindersList,
       AddReminder,
     },
-    name: 'landing-page',
+    name: 'Home',
+    created() {
+      this.fetchReminders();
+    },
     data() {
       return {
         reminders: [],
-        activeReminder: {
-          title: '',
-          createdAt: null,
-          due: null,
-        },
       };
     },
     methods: {
-      createReminder(title, due, e) {
+      deleteReminder(id) {
+        database('reminders').where('id', id).del()
+        .then(() => this.fetchReminders());
+      },
+      addReminder(title, due, createdAt, e) {
         e.preventDefault();
-        const reminder = {
-          title,
-          createdAt: Date.now(),
-          due,
-        };
-        this.reminders.push(reminder);
+        database('reminders').insert({ title, createdAt, due })
+        .then(() => this.fetchReminders(e));
       },
-      deleteReminder(createdAt) {
-        for (let i = 0; i < this.reminders.length; i++) {
-          if (this.reminders[i].createdAt === createdAt) {
-            this.reminders.splice(i, 1);
-          }
-        }
+      fetchReminders() {
+        this.reminders = [];
+        database.select().from('reminders').then((reminders) => {
+          reminders.forEach((reminder) => {
+            this.reminders.push(reminder);
+          });
+        });
       },
-      // editReminder(createdAt) {
-      // },
     },
   };
 </script>
