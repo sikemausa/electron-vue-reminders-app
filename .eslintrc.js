@@ -13,6 +13,7 @@ module.exports = {
     'html'
   ],
   'rules': {
+    'no-console': 0,
     'no-return-assign': 0,
     'consistent-return': 0,
     'global-require': 0,

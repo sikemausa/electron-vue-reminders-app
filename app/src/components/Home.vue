@@ -44,12 +44,14 @@
     methods: {
       deleteReminder(id) {
         database('reminders').where('id', id).del()
-        .then(() => this.fetchReminders());
+        .then(() => this.fetchReminders())
+        .catch(error => console.log(error));
       },
       addReminder(title, due, createdAt, e) {
         e.preventDefault();
         database('reminders').insert({ title, createdAt, due })
-        .then(() => this.fetchReminders(e));
+        .then(() => this.fetchReminders(e))
+        .catch(error => console.log(error));
       },
       fetchReminders() {
         this.reminders = [];
@@ -57,7 +59,8 @@
           reminders.forEach((reminder) => {
             this.reminders.push(reminder);
           });
-        });
+        })
+        .catch(error => console.log(error));
       },
     },
   };
