@@ -27,6 +27,12 @@
   const database = remote.require(path.join(process.cwd(), 'app/database.js'));
   global.database = database;
 
+  const myNotification = new Notification('Title', {
+    body: 'Lorem Ipsum Dolor Sit Amet',
+  });
+
+  myNotification.onclick = () => console.log('Notification clicked');
+
   export default {
     components: {
       RemindersList,
@@ -60,7 +66,17 @@
             this.reminders.push(reminder);
           });
         })
+        .then(this.addNotifications())
         .catch(error => console.log(error));
+      },
+      addNotifications() {
+        database.select().from('reminders').then((reminders) => {
+          reminders.forEach((reminder) => {
+            const notification = new Notification('title', {
+              body: reminder.title,
+            });
+          });
+        });
       },
     },
   };
