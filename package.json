@@ -16,7 +16,7 @@
     "pack": "cross-env NODE_ENV=production webpack -p --progress --colors",
     "test": "npm run unit && npm run e2e",
     "unit": "karma start test/unit/karma.conf.js",
-    "postinstall": "npm run lint:fix && cd app && npm install"
+    "postinstall": "electron-rebuild && npm run lint:fix && cd app && npm install"
   },
   "author": "Greg Holguin <simulatedgreg@gmail.com>",
   "license": "MIT",
@@ -76,6 +76,7 @@
     "js-md5": "^0.4.1",
     "menubar": "^5.1.0",
     "moment": "^2.17.1",
+    "path": "^0.12.7",
     "vue": "^2.1.4",
     "vue-electron": "^1.0.4"
   }
