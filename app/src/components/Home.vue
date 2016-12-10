@@ -35,23 +35,25 @@
       AddReminder,
     },
     name: 'landing-page',
+    created() {
+      this.fetchReminders();
+    },
     data() {
       return {
         reminders: [],
       };
     },
     methods: {
-      deleteReminder(id, e) {
+      deleteReminder(id) {
         database('reminders').where('id', id).del()
-        .then(() => this.fetchReminders(e));
+        .then(() => this.fetchReminders());
       },
       addReminder(title, due, createdAt, e) {
         e.preventDefault();
         database('reminders').insert({ title, createdAt, due })
         .then(() => this.fetchReminders(e));
       },
-      fetchReminders(e) {
-        e.preventDefault();
+      fetchReminders() {
         this.reminders = [];
         database.select().from('reminders').then((reminders) => {
           reminders.forEach((reminder) => {
