@@ -35,6 +35,7 @@
     name: 'Home',
     created() {
       this.fetchReminders();
+      this.checkReminders();
     },
     data() {
       return {
@@ -47,9 +48,9 @@
         .then(() => this.fetchReminders())
         .catch(error => console.log(error));
       },
-      addReminder(title, due, createdAt, e) {
+      addReminder(title, due, displayedNotification, e) {
         e.preventDefault();
-        database('reminders').insert({ title, createdAt, due })
+        database('reminders').insert({ title, due, displayedNotification })
         .then(() => this.fetchReminders(e))
         .catch(error => console.log(error));
       },
@@ -60,17 +61,27 @@
             this.reminders.push(reminder);
           });
         })
-        .then(this.addNotifications())
         .catch(error => console.log(error));
       },
-      addNotifications() {
+      checkReminders() {
         database.select().from('reminders').then((reminders) => {
-          reminders.forEach((reminder) => {
-            if(reminder.due <= )
-            const notification = new Notification('title', {
-              body: reminder.title,
-            });
+          if (!reminders) {
+            return setTimeout(() => { this.checkReminders(); }, 5000);
+          }
+          this.reminders.forEach((reminder) => {
+            if (Date.parse(reminder.due) <= Date.now()
+                && reminder.displayedNotification === 0) {
+              database('reminders').where('id', reminder.id).update({
+                displayedNotification: 1,
+              })
+              .then(this.fetchReminders())
+              .catch(error => console.log(error));
+              const notification = new Notification('title', {
+                body: reminder.title,
+              });
+            }
           });
+          setTimeout(() => { this.checkReminders(); }, 5000);
         });
       },
     },
