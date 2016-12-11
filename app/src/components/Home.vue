@@ -39,6 +39,7 @@
     name: 'Home',
     created() {
       this.fetchReminders();
+      this.updateNotifications();
     },
     data() {
       return {
@@ -51,9 +52,9 @@
         .then(() => this.fetchReminders())
         .catch(error => console.log(error));
       },
-      addReminder(title, due, createdAt, e) {
+      addReminder(title, due, displayedNotification, e) {
         e.preventDefault();
-        database('reminders').insert({ title, createdAt, due })
+        database('reminders').insert({ title, due, displayedNotification })
         .then(() => this.fetchReminders(e))
         .catch(error => console.log(error));
       },
@@ -64,17 +65,37 @@
             this.reminders.push(reminder);
           });
         })
-        .then(this.addNotifications())
         .catch(error => console.log(error));
       },
-      addNotifications() {
+      checkForReminders() {
         database.select().from('reminders').then((reminders) => {
-          reminders.forEach((reminder) => {
-            const notification = new Notification('title', {
-              body: reminder.title,
-            });
-          });
+          if (!reminders) {
+            return setTimeout(() => { this.updateNotifications(); }, 5000);
+          }
         });
+      },
+      markReminderAsSeen(reminder) {
+        database('reminders').where('id', reminder.id).update({
+          displayedNotification: 1,
+        })
+        .catch(error => console.log(error));
+      },
+      createNotification(reminder) {
+        const notification = new Notification('title', {
+          body: reminder.title,
+        });
+      },
+      updateNotifications() {
+        this.checkForReminders();
+        this.reminders.forEach((reminder) => {
+          if (Date.parse(reminder.due) <= Date.now()
+          && reminder.displayedNotification === 0) {
+            this.markReminderAsSeen(reminder);
+            this.fetchReminders();
+            this.createNotification(reminder);
+          }
+        });
+        setTimeout(() => { this.updateNotifications(); }, 5000);
       },
     },
   };

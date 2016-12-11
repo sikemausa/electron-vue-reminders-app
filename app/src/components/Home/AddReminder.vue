@@ -52,7 +52,7 @@ input {
       class="datePicker"
     ></br>
     <button
-      v-on:click='addReminder(title, due, createdAt, $event)'
+      v-on:click='addReminder(title, due, displayedNotification, $event)'
       v-bind:disabled="(title === '' || due === null)"
       class="addButton"
     >Add Reminder
@@ -67,7 +67,7 @@ input {
       return {
         title: '',
         due: null,
-        createdAt: null,
+        displayedNotification: false,
       };
     },
   };
