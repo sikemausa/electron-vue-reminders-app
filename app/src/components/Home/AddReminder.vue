@@ -74,7 +74,6 @@ input {
     },
     methods: {
       clearInputs() {
-        console.log(this.due);
         this.title = '';
         this.due = null;
       },
