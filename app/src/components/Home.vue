@@ -74,8 +74,8 @@
               database('reminders').where('id', reminder.id).update({
                 displayedNotification: 1,
               })
-              .then(this.fetchReminders())
               .catch(error => console.log(error));
+              this.fetchReminders();
               const notification = new Notification('title', {
                 body: reminder.title,
               });
