@@ -24,6 +24,11 @@
     background-color: #CFD8DC;
     border: none;
     outline: none;
+    margin-bottom: 2px;
+  }
+  .remove-button:hover {
+    background-color: #F44336;
+    border-radius: 2px;
   }
 </style>
 
