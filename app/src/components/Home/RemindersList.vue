@@ -18,8 +18,7 @@
     props: ['reminders', 'deleteReminder'],
     methods: {
       formatDate(date) {
-        const parsedDate = Date.parse(date);
-        return moment(parsedDate).format('MMMM Do YYYY, h:mm:ss a');
+        return moment(date).format('MMMM Do YYYY, h:mm');
       },
     },
   };

@@ -69,15 +69,15 @@
             return setTimeout(() => { this.checkReminders(); }, 5000);
           }
           this.reminders.forEach((reminder) => {
-            console.log(reminder.displayedNotification);
             if (Date.parse(reminder.due) <= Date.now()
-                && reminder.displayedNotification === false) {
-              console.log(reminder.title);
+                && reminder.displayedNotification === 0) {
+              database('reminders').where('id', reminder.id).update({
+                displayedNotification: 1,
+              })
+              .then(this.fetchReminders())
+              .catch(error => console.log(error));
               const notification = new Notification('title', {
                 body: reminder.title,
-              });
-              database.where('id', reminder.id).update({
-                displayedNotification: true,
               });
             }
           });
