@@ -35,7 +35,7 @@
     name: 'Home',
     created() {
       this.fetchReminders();
-      this.checkReminders();
+      this.updateNotifications();
     },
     data() {
       return {
@@ -63,26 +63,35 @@
         })
         .catch(error => console.log(error));
       },
-      checkReminders() {
+      checkForReminders() {
         database.select().from('reminders').then((reminders) => {
           if (!reminders) {
-            return setTimeout(() => { this.checkReminders(); }, 5000);
+            return setTimeout(() => { this.updateNotifications(); }, 5000);
           }
-          this.reminders.forEach((reminder) => {
-            if (Date.parse(reminder.due) <= Date.now()
-                && reminder.displayedNotification === 0) {
-              database('reminders').where('id', reminder.id).update({
-                displayedNotification: 1,
-              })
-              .catch(error => console.log(error));
-              this.fetchReminders();
-              const notification = new Notification('title', {
-                body: reminder.title,
-              });
-            }
-          });
-          setTimeout(() => { this.checkReminders(); }, 5000);
         });
+      },
+      markReminderAsSeen(reminder) {
+        database('reminders').where('id', reminder.id).update({
+          displayedNotification: 1,
+        })
+        .catch(error => console.log(error));
+      },
+      createNotification(reminder) {
+        const notification = new Notification('title', {
+          body: reminder.title,
+        });
+      },
+      updateNotifications() {
+        this.checkForReminders();
+        this.reminders.forEach((reminder) => {
+          if (Date.parse(reminder.due) <= Date.now()
+          && reminder.displayedNotification === 0) {
+            this.markReminderAsSeen(reminder);
+            this.fetchReminders();
+            this.createNotification(reminder);
+          }
+        });
+        setTimeout(() => { this.updateNotifications(); }, 5000);
       },
     },
   };
