@@ -48,6 +48,7 @@ input {
     Due:
     <input
       type="datetime-local"
+      max = "9999-12-31T23:59:59"
       v-model="due"
       class="datePicker"
     ></br>
@@ -73,6 +74,7 @@ input {
     },
     methods: {
       clearInputs() {
+        console.log(this.due);
         this.title = '';
         this.due = null;
       },
