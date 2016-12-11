@@ -3,7 +3,6 @@
     height: 350px;
     overflow-y: scroll;
     overflow-x: hidden;
-    width: 350px;
   }
   li {
     border-bottom: 1px solid #009688;
