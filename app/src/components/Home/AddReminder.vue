@@ -8,7 +8,7 @@
       placeholder="Title">
     <input type="datetime-local"
       v-model="due">
-    <button v-on:click='addReminder(title, due, createdAt, $event)'
+    <button v-on:click='addReminder(title, due, displayedNotification, $event)'
             v-bind:disabled="(title === '' || due === null)"
             >Add Reminder
     </button>
@@ -22,7 +22,7 @@
       return {
         title: '',
         due: null,
-        createdAt: null,
+        displayedNotification: false,
       };
     },
   };

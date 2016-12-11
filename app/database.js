@@ -12,8 +12,8 @@ database.schema.hasTable('reminders').then((exists) => {
     return database.schema.createTable('reminders', (t) => {
       t.increments('id').primary();
       t.string('title', 100);
-      t.integer('createdAt');
       t.text('due');
+      t.boolean('displayedNotification');
     });
   }
 });
