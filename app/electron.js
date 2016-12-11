@@ -6,8 +6,9 @@ const app = electron.app
 const BrowserWindow = electron.BrowserWindow
 
 const menubar = new MenuBar({
-  width: 400,
   height: 500,
+  preloadWindow: true,
+  width: 350,
 });
 
 let config = {}

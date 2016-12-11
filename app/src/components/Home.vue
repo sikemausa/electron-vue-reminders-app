@@ -1,7 +1,11 @@
 <style scoped>
   h1 {
-    width: 100%;
-    background-color: grey;
+    background-color: #455A64;
+    color: #FFF;
+    font-size: 1.7em;
+    font-weight: 700;
+    height: 35px;
+    width: 100vw;
   }
 </style>
 
@@ -66,7 +70,6 @@
       addNotifications() {
         database.select().from('reminders').then((reminders) => {
           reminders.forEach((reminder) => {
-            if(reminder.due <= )
             const notification = new Notification('title', {
               body: reminder.title,
             });
