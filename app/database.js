@@ -13,7 +13,9 @@ database.schema.hasTable('reminders').then((exists) => {
       t.increments('id').primary();
       t.string('title', 100);
       t.text('due');
-      t.boolean('displayedNotification');
+      t.text('alternateNotification');
+      t.boolean('displayedDueNotification');
+      t.boolean('displayedAlternateNotification');
     });
   }
 });

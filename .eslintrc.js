@@ -13,6 +13,8 @@ module.exports = {
     'html'
   ],
   'rules': {
+    'no-else-return': 0,
+    'brace-style': 0,
     'no-undef': 0,
     'no-unused-vars': 0,
     'no-console': 0,
