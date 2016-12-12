@@ -6,7 +6,12 @@ require('babel-register')({
 })
 
 // Attach Chai APIs to global scope
-const { expect, should, assert } = require('chai')
+const expect = require('chai')
+const should = require('chai')
+const assert = require('chai')
+
+// const { expect, should, assert } = require 'chai';
+
 global.expect = expect
 global.should = should
 global.assert = assert

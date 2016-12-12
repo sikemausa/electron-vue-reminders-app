@@ -8,6 +8,6 @@ describe('Home.vue', () => {
       render: h => h(Home),
     }).$mount();
 
-    expect(vm.$el.querySelector('h1').textContent).to.contain('Welcome.');
+    expect(vm.$el.querySelector('h1').textContent).to.contain('Reminders');
   });
 });
