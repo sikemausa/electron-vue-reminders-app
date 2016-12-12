@@ -3,7 +3,6 @@
     height: 350px;
     overflow-y: scroll;
     overflow-x: hidden;
-    width: 350px;
   }
   li {
     border-bottom: 1px solid #009688;
@@ -36,7 +35,9 @@
   <ul id="reminders-list">
     <li v-for="reminder in reminders">
       <h3 class="reminder-title">{{ reminder.title }}</h3>
-      <span class="due">{{ formatDate(reminder.due) }}</span>
+      <span class="due">{{ formatDate(reminder.due) }}</span><br />
+      <span class="due">{{
+        formatDate(reminder.alternateNotification) }}</span>
       <button
         v-on:click='deleteReminder(reminder.id)'
         class="remove-button"
@@ -52,7 +53,8 @@
     props: ['reminders', 'deleteReminder'],
     methods: {
       formatDate(date) {
-        return moment(date).format('MMMM Do YYYY, h:mm');
+        if (date !== null) return moment(date).format('MMMM Do YYYY, h:mm');
+        else return '';
       },
     },
   };

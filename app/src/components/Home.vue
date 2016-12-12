@@ -52,9 +52,18 @@
         .then(() => this.fetchReminders())
         .catch(error => console.log(error));
       },
-      addReminder(title, due, displayedNotification, e) {
+      addReminder(title,
+                  due,
+                  displayedDueNotification,
+                  alternateNotification,
+                  displayedAlternateNotification,
+                  e) {
         e.preventDefault();
-        database('reminders').insert({ title, due, displayedNotification })
+        database('reminders').insert({ title,
+                                       due,
+                                       displayedDueNotification,
+                                       alternateNotification,
+                                       displayedAlternateNotification })
         .then(() => this.fetchReminders(e))
         .catch(error => console.log(error));
       },
@@ -74,23 +83,37 @@
           }
         });
       },
-      markReminderAsSeen(reminder) {
-        database('reminders').where('id', reminder.id).update({
-          displayedNotification: 1,
-        })
-        .catch(error => console.log(error));
+      markReminderAsSeen(reminder, notification) {
+        if (notification === 'due') {
+          database('reminders').where('id', reminder.id).update({
+            displayedDueNotification: 1,
+          })
+          .catch(error => console.log(error));
+        }
+        else if (notification === 'alternateNotification') {
+          database('reminders').where('id', reminder.id).update({
+            displayedAlternateNotification: 1,
+          })
+          .catch(error => console.log(error));
+        }
       },
       createNotification(reminder) {
         const notification = new Notification('title', {
           body: reminder.title,
         });
       },
-      updateNotifications() {
+      updateNotifications(notification) {
         this.checkForReminders();
         this.reminders.forEach((reminder) => {
           if (Date.parse(reminder.due) <= Date.now()
-          && reminder.displayedNotification === 0) {
-            this.markReminderAsSeen(reminder);
+          && reminder.displayedDueNotification === 0) {
+            this.markReminderAsSeen(reminder, 'due');
+            this.fetchReminders();
+            this.createNotification(reminder);
+          }
+          if (Date.parse(reminder.alternateNotification) <= Date.now()
+          && reminder.displayedAlternateNotification === 0) {
+            this.markReminderAsSeen(reminder, 'alternateNotification');
             this.fetchReminders();
             this.createNotification(reminder);
           }

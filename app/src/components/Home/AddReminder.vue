@@ -39,20 +39,29 @@ input {
 
 <template>
   <form>
-    Text:
+    Title:<br />
     <input
       v-model="title"
       placeholder="Title"
       class="title"
     ></br>
-    Due:
+    Due:<br />
     <input
       type="datetime-local"
+      max = "9999-12-31T23:59:59"
       v-model="due"
       class="datePicker"
     ></br>
+    Secondary Notification:<br />
+    <input
+      type="datetime-local"
+      max = "9999-12-31T23:59:59"
+      v-model="alternateNotification"
+      class="datePicker"
+    ></br>
     <button
-      v-on:click='addReminder(title, due, displayedNotification, $event)'
+      v-on:click='addReminder(title, due, displayedDueNotification, alternateNotification, displayedAlternateNotification, $event);
+                  clearInputs();'
       v-bind:disabled="(title === '' || due === null)"
       class="addButton"
     >Add Reminder
@@ -67,8 +76,17 @@ input {
       return {
         title: '',
         due: null,
-        displayedNotification: false,
+        alternateNotification: null,
+        displayedDueNotification: false,
+        displayedAlternateNotification: false,
       };
+    },
+    methods: {
+      clearInputs() {
+        this.title = '';
+        this.due = null;
+        this.alternateNotification = null;
+      },
     },
   };
 </script>
