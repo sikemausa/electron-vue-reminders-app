@@ -6,6 +6,10 @@ const app = electron.app
 const BrowserWindow = electron.BrowserWindow
 
 const menubar = new MenuBar({
+  minWidth: 350,
+  minHeight: 500,
+  maxWidth: 350,
+  maxHeight: 500,
   height: 500,
   preloadWindow: true,
   width: 350,
