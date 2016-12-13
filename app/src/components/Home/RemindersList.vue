@@ -32,15 +32,15 @@
 </style>
 
 <template>
-  <ul id="reminders-list">
-    <li v-for="reminder in reminders">
-      <h3 class="reminder-title">{{ reminder.title }}</h3>
-      <span class="due">{{ formatDate(reminder.due) }}</span><br />
-      <span class="due">{{
+  <ul id='reminders-list'>
+    <li v-for='reminder in reminders'>
+      <h3 class='reminder-title'>{{ reminder.title }}</h3>
+      <span class='due'>{{ formatDate(reminder.due) }}</span><br />
+      <span class='due'>{{
         formatDate(reminder.alternateNotification) }}</span>
       <button
         v-on:click='deleteReminder(reminder.id)'
-        class="remove-button"
+        class='remove-button'
       >✖️</button>
     </li>
   </ul>

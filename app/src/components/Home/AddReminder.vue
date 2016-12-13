@@ -39,31 +39,36 @@ input {
 
 <template>
   <form>
-    Title:<br />
+    Title:
+    <br />
     <input
-      v-model="title"
-      placeholder="Title"
-      class="title"
-    ></br>
-    Due:<br />
+      v-model='title'
+      placeholder='Title'
+      class='title'
+    >
+    <br />
+    Due:
+    <br />
     <input
-      type="datetime-local"
-      max = "9999-12-31T23:59:59"
-      v-model="due"
-      class="datePicker"
-    ></br>
-    Secondary Notification:<br />
+      type='datetime-local'
+      max = '9999-12-31T23:59:59'
+      v-model='due'
+      class='datePicker'
+    >
+    <br />
+    Secondary Notification:
+    <br />
     <input
-      type="datetime-local"
-      max = "9999-12-31T23:59:59"
-      v-model="alternateNotification"
-      class="datePicker"
-    ></br>
+      type='datetime-local'
+      max = '9999-12-31T23:59:59'
+      v-model='alternateNotification'
+      class='datePicker'
+    ><br />
     <button
       v-on:click='addReminder(title, due, displayedDueNotification, alternateNotification, displayedAlternateNotification, $event);
                   clearInputs();'
-      v-bind:disabled="(title === '' || due === null)"
-      class="addButton"
+      v-bind:disabled='(title === "" || due === null)'
+      class='addButton'
     >Add Reminder
     </button>
   </form>
