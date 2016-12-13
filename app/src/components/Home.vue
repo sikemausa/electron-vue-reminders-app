@@ -28,7 +28,11 @@
   import AddReminder from './Home/AddReminder';
   import { remote } from 'electron';
   import path from 'path';
+  import moment from 'moment';
   const database = remote.require(path.join(process.cwd(), 'app/database.js'));
+  const x = new Date();
+  const timeZoneOffsetInMinutes = x.getTimezoneOffset() / 60;
+  const timeZoneOffsetInMiliseconds = (timeZoneOffsetInMinutes * 3600000);
   global.database = database;
 
   export default {
@@ -52,18 +56,20 @@
         .then(() => this.fetchReminders())
         .catch(error => console.log(error));
       },
-      addReminder(title,
-                  due,
-                  displayedDueNotification,
-                  alternateNotification,
-                  displayedAlternateNotification,
-                  e) {
+      addReminder(
+        title,
+        due,
+        displayedDueNotification,
+        alternateNotification,
+        displayedAlternateNotification,
+        e) {
         e.preventDefault();
-        database('reminders').insert({ title,
-                                       due,
-                                       displayedDueNotification,
-                                       alternateNotification,
-                                       displayedAlternateNotification })
+        database('reminders').insert({
+          title,
+          due,
+          displayedDueNotification,
+          alternateNotification,
+          displayedAlternateNotification })
         .then(() => this.fetchReminders(e))
         .catch(error => console.log(error));
       },
@@ -105,18 +111,19 @@
       updateNotifications(notification) {
         this.checkForReminders();
         this.reminders.forEach((reminder) => {
-          if (Date.parse(reminder.due) <= Date.now()
-          && reminder.displayedDueNotification === 0) {
-            this.markReminderAsSeen(reminder, 'due');
-            this.fetchReminders();
-            this.createNotification(reminder);
+          const localDateInMiliseconds = (Date.parse(Date()) - timeZoneOffsetInMiliseconds);
+          if (Date.parse(reminder.due) < localDateInMiliseconds
+              && reminder.displayedDueNotification === 0) {
+                this.markReminderAsSeen(reminder, 'due');
+                this.fetchReminders();
+                this.createNotification(reminder);
           }
-          if (Date.parse(reminder.alternateNotification) <= Date.now()
-          && reminder.displayedAlternateNotification === 0) {
-            this.markReminderAsSeen(reminder, 'alternateNotification');
-            this.fetchReminders();
-            this.createNotification(reminder);
-          }
+          if (Date.parse(reminder.alternateNotification) < localDateInMiliseconds
+             && reminder.displayedAlternateNotification === 0) {
+                this.markReminderAsSeen(reminder, 'alternateNotification');
+                this.fetchReminders();
+                this.createNotification(reminder);
+            }
         });
         setTimeout(() => { this.updateNotifications(); }, 5000);
       },
