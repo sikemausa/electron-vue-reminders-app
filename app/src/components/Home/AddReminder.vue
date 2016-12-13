@@ -4,14 +4,13 @@ input {
 }
 .title {
   font-size: 12pt;
-  margin: 10px 0 5px 5px;
-  margin-bottom: 5px;
+  margin: 2px 0 3px 5px;
   padding: .5px 4px;
   width: 242px;
 }
 .datePicker {
   font-size: 10pt;
-  margin-left: 4pt;
+  margin: 2px 0 5px 5px;
   text-align: center;
 }
 .addButton {
@@ -47,7 +46,7 @@ input {
       class='title'
     >
     <br />
-    Due:
+    Notify On:
     <br />
     <input
       type='datetime-local'
