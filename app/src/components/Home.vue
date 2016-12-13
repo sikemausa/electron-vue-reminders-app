@@ -123,7 +123,7 @@
                 this.markReminderAsSeen(reminder, 'alternateNotification');
                 this.fetchReminders();
                 this.createNotification(reminder);
-            }
+          }
         });
         setTimeout(() => { this.updateNotifications(); }, 5000);
       },

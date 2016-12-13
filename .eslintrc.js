@@ -13,7 +13,6 @@ module.exports = {
     'html'
   ],
   'rules': {
-    'no-trailing-spaces': 0,
     'indent': 0,
     'no-else-return': 0,
     'brace-style': 0,
