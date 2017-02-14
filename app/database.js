@@ -7,7 +7,7 @@ const database = require('knex')({
   },
 });
 
-database.schema.hasTable('reminders').then((exists) => {
+database.schema.hasTable('r`eminders').then((exists) => {
   if (!exists) {
     return database.schema.createTable('reminders', (t) => {
       t.increments('id').primary();

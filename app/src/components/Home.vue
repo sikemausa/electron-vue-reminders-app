@@ -104,7 +104,7 @@
         }
       },
       createNotification(reminder) {
-        const notification = new Notification('title', {
+        const notification = new Notification('Reminder:', {
           body: reminder.title,
         });
       },

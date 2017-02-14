@@ -1,6 +1,6 @@
-'use strict'
+'use strict';
 const MenuBar = require('menubar');
-const electron = require('electron')
+const electron = require('electron');
 const path = require('path')
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
