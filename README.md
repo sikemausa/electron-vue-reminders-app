@@ -1,6 +1,18 @@
 # vue-electron-reminders-app
 
-> An electron-vue project
+> An electron-vue menubar reminders application
+
+## Intro
+
+> This menubar application allows users to create native desktop reminders that will alert them natively within their operating system's notifications menu. Users input the title of the notification, and up to two dates and times that they would like to be notified on.
+
+## Technologies Used
+
+> Electron, Vue 2, SQLite3
+
+## How the Application works
+
+> Upon the application's loading, the reminders are immediately fetched from the database and updated within the native notifications menu. Once users have inputted a reminder, it is immediately stored in the database, at which point our reminders are fetched from the database to be stored in the state of the component, so they can be updated and rendered immediately. Notifications are set to check if they have passed their due date every 5 seconds - if they have, they will appear on the desktop's notifications menu.
 
 ## Build Setup
 
