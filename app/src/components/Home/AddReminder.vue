@@ -46,7 +46,7 @@ input {
       class='title'
     >
     <br />
-    Notify On:
+    First Notification:
     <br />
     <input
       type='datetime-local'
