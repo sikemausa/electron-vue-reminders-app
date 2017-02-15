@@ -18,7 +18,6 @@ Upon the application's loading, the reminders are immediately fetched from the d
 
 
 <img width="353" alt="screen shot 2017-02-14 at 10 45 58 am" src="https://cloud.githubusercontent.com/assets/19242172/22941975/ce483be2-f2a4-11e6-82f4-62fb0e26009b.png">
-
 <img width="343" alt="screen shot 2017-02-14 at 10 37 43 am" src="https://cloud.githubusercontent.com/assets/19242172/22941238/f045a926-f2a1-11e6-9405-56b020b4a34a.png">
 
 ## Build Setup
